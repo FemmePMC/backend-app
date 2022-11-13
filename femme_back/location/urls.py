@@ -3,6 +3,6 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('user.urls')),
+    path('', views.getRoute),
+    path('ubicacion/', views.getUbicacion),
 ]

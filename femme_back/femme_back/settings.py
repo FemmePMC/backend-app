@@ -37,10 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'forum',
-    'user',
-    'alert',
-    'location',
+    'forum.apps.ForumConfig',
+    'alert.apps.AlertConfig',
+    'location.apps.LocationConfig',
 
     'user.apps.UserConfig',
     'rest_framework',
