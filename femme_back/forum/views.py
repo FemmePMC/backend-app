@@ -46,7 +46,7 @@ def createForum(request):
         id = data['id'],
         nombre = data['nombre'],
         tema = data['tema'],
-        users = data['users'],
+        users = data['users']
     )
     serializer = ForumSerializer(forum, many=False)
     return Response(serializer.data)

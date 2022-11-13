@@ -8,4 +8,4 @@ class Forum(models.Model):
     nombre = models.CharField(max_length=50)
     tema = models.CharField(max_length=50)
 
-    users = models.ManyToManyField('self', related_name='users')
+    users = models.ForeignKey(User, on_delete=models.CASCADE)
