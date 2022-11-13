@@ -1,7 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import NombreSerializer
-from .models import Nombre
+from .serializers import UserSerializer
+from .models import User
 
 
 """
@@ -26,41 +26,41 @@ def getRoute(request):
 Serializamos para poder obtener la informacion de todas las personas
 """
 @api_view(['GET'])
-def getNombres(request):
-    nombres = Nombre.objects.all()
-    serializer = NombreSerializer(nombres, many=True)
+def getUsers(request):
+    user = User.objects.all()
+    serializer = UserSerializer(user, many=True)
     return  Response(serializer.data)
 
 """
 Serializamos para poder obtener la informacion de una persona en especifico
 """
 @api_view(['GET'])
-def getNombre(request, pk):
-    nombres = Nombre.objects.get(id=pk)
-    serializer = NombreSerializer(nombres, many=False)
+def getUser(request, pk):
+    users = User.objects.get(id=pk)
+    serializer = UserSerializer(users, many=False)
     return  Response(serializer.data)
 
 """
 Serializamos para poder crear un nombre
 """
 @api_view(['POST'])
-def createNombre(request):
+def createUser(request):
     data = request.data
-    nombre = Nombre.objects.create(
+    user = User.objects.create(
         body = data['body']
     )
-    serializer = NombreSerializer(nombre, many=False)
+    serializer = UserSerializer(user, many=False)
     return Response(serializer.data)
 
 """
 Serializamos para poder actualizar el contenido de una persona
 """
 @api_view(['PUT'])
-def updateNombre(request, pk):
+def updateUser(request, pk):
     data = request.data
-    nombre = Nombre.objects.get(id=pk)
+    user = User.objects.get(id=pk)
 
-    serializer = NombreSerializer(nombre, data=request.data)
+    serializer = UserSerializer(user, data=request.data)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
@@ -69,7 +69,7 @@ def updateNombre(request, pk):
 Eliminamos un nombre de la base de datos
 """
 @api_view(['DEL'])
-def deleteNombre(request, pk):
-    nombre = Nombre.objects.get(id=pk)
-    nombre.delete()
-    return Response('Se elimino el nombre!')
+def deleteUser(request, pk):
+    user = User.objects.get(id=pk)
+    user.delete()
+    return Response('Se elimino el usuario!')
