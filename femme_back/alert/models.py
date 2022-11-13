@@ -1,6 +1,6 @@
 from django.db import models
 
-class Alert(moedls.Model):
+class Alert(models.Model):
     message = models.CharField(max_length=200)
 
-    messages = models.ManyToManyField(Message, related_name='messages')
+    messages = models.ManyToManyField('self', related_name='messages')

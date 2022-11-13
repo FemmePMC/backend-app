@@ -3,10 +3,10 @@ from . import views
 
 urlpatterns = [
     path('',views.getRoute),
-    path('nombres/', views.getNombres),
-    path('nombres/create/', views.createNombre),
-    path('nombres/<str:pk>/update', views.updateNombre),
-    path('nombres/<str:pk>/delete', views.deleteNombre),
-    path('nombres/<str:pk>/', views.getNombre),
+    path('nombres/', views.getUsers),
+    path('nombre/create/', views.createUser),
+    path('nombre/<str:pk>/update', views.updateUser),
+    path('nombre/<str:pk>/delete', views.deleteUser),
+    path('nombre/<str:pk>/', views.getUser),
     
 ]

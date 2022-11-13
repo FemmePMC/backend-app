@@ -15,7 +15,19 @@ def getRoute(request):
         {
             'Endpoint': '',
             'method': '',
-            'body': None,
+            'id_number': None,
+            'id_type': None,
+            'nickname': None,
+            'pasword': None,
+            'name': None,
+            'birth_date': None,
+            'photo': None,
+            'height': None,
+            'email': None,
+            'phone': None,
+            'location': None,
+            'alerts_received': None,
+            'emergency_contacts': None,
             'description': ''
         },
     ]
@@ -23,7 +35,7 @@ def getRoute(request):
 
 
 """
-Serializamos para poder obtener la informacion de todas las personas
+obtenemos la informacion de todas las personas
 """
 @api_view(['GET'])
 def getUsers(request):
@@ -32,35 +44,47 @@ def getUsers(request):
     return  Response(serializer.data)
 
 """
-Serializamos para poder obtener la informacion de una persona en especifico
+obtenemos la informacion de una persona en especifico
 """
 @api_view(['GET'])
 def getUser(request, pk):
-    users = User.objects.get(id=pk)
-    serializer = UserSerializer(users, many=False)
+    user = User.objects.get(id=pk)
+    serializer = UserSerializer(user, many=False)
     return  Response(serializer.data)
 
 """
-Serializamos para poder crear un nombre
+Agregamos un nombre a la base de datos
 """
 @api_view(['POST'])
 def createUser(request):
     data = request.data
     user = User.objects.create(
-        body = data['body']
+        id_number = data['id_number'],
+        id_type = data['id_type'],
+        nickname = data['nickname'],
+        pasword = data['pasword'],
+        name = data['name'],
+        birth_date = data['birth_date'],
+        photo = data['photo'],
+        height = data['height'],
+        email = data['email'],
+        phone = data['phone'],
+        location = data['location'],
+        alerts_received = data['alerts_received'],
+        emergency_contacts = data['emergency_contacts']
     )
     serializer = UserSerializer(user, many=False)
     return Response(serializer.data)
 
 """
-Serializamos para poder actualizar el contenido de una persona
+Actualizamos el contenido de una persona
 """
 @api_view(['PUT'])
 def updateUser(request, pk):
     data = request.data
     user = User.objects.get(id=pk)
 
-    serializer = UserSerializer(user, data=request.data)
+    serializer = UserSerializer(user, data)
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
@@ -68,7 +92,7 @@ def updateUser(request, pk):
 """
 Eliminamos un nombre de la base de datos
 """
-@api_view(['DEL'])
+@api_view(['DELETE'])
 def deleteUser(request, pk):
     user = User.objects.get(id=pk)
     user.delete()

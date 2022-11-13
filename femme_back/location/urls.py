@@ -4,5 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.getRoute),
-    path('ubicacion/', views.getUbicacion),
+    path('ubicacion/create/', views.createUbicacion),
+    path('ubicacion/<str:pk>/delete', views.deleteUbicacion),
+    path('ubicacion/<str:pk>/', views.getUbicacion),
 ]

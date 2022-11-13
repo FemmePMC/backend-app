@@ -1,4 +1,5 @@
 from django.db import models
+from user.models import User
 
 # Create your models here.
 
@@ -7,4 +8,4 @@ class Forum(models.Model):
     nombre = models.CharField(max_length=50)
     tema = models.CharField(max_length=50)
 
-    forum = models.ManyToManyField('self', related_name='forum')
+    users = models.ManyToManyField('self', related_name='users')
