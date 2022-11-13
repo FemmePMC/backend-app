@@ -20,6 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('user.urls')),
     path('', include('location.urls')),
-    #path('', include('alert.urls')),
-    #path('', include('forum.urls')),
+    path('', include('alert.urls')),
+    path('', include('forum.urls')),
 ]
