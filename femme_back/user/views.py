@@ -69,7 +69,7 @@ def createUser(request):
         height = data['height'],
         email = data['email'],
         phone = data['phone'],
-        location = data['location']
+        location_id = data['location_id']
     )
     serializer = UserSerializer(user, many=False)
     return Response(serializer.data)
