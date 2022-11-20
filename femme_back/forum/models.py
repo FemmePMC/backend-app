@@ -4,7 +4,6 @@ from user.models import User
 # Create your models here.
 
 class Forum(models.Model):
-    id = models.IntegerField(primary_key=True, default=0)
     nombre = models.CharField(max_length=50)
     tema = models.CharField(max_length=50)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner')

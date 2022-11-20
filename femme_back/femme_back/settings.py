@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-*0=k1t(kj!o#ev2yb%s-3x6v&-5@ga69#&w23+6hxnpf+vdr_8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'forum.apps.ForumConfig',
     'alert.apps.AlertConfig',
     'location.apps.LocationConfig',
-
     'user.apps.UserConfig',
     'rest_framework',
     'corsheaders',
