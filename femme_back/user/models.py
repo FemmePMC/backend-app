@@ -8,7 +8,7 @@ class User(models.Model):
     id_number = models.IntegerField()
     id_type = models.CharField(max_length=2)
     nickname = models.CharField(max_length=20)
-    pasword = models.CharField(max_length=20)
+    password = models.CharField(max_length=20)
     name = models.CharField(max_length=50)
     birth_date = models.DateField()
     photo = models.ImageField(upload_to='user_photos', blank=True)

@@ -18,7 +18,7 @@ def getRoute(request):
             'id_number': None,
             'id_type': None,
             'nickname': None,
-            'pasword': None,
+            'password': None,
             'name': None,
             'birth_date': None,
             'photo': None,
@@ -62,16 +62,14 @@ def createUser(request):
         id_number = data['id_number'],
         id_type = data['id_type'],
         nickname = data['nickname'],
-        pasword = data['pasword'],
+        password = data['password'],
         name = data['name'],
         birth_date = data['birth_date'],
         photo = data['photo'],
         height = data['height'],
         email = data['email'],
         phone = data['phone'],
-        location = data['location'],
-        alerts_received = data['alerts_received'],
-        emergency_contacts = data['emergency_contacts']
+        location = data['location']
     )
     serializer = UserSerializer(user, many=False)
     return Response(serializer.data)
