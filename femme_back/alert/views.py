@@ -5,7 +5,7 @@ from .models import Alert
 
 @api_view(['"GET'])
 def getRoute(request):
-    routs = [
+    routes = [
         {
             'Endpoint': '',
             'method': '',
@@ -13,6 +13,7 @@ def getRoute(request):
             'description': ''
         }
     ]
+    return Response(routes)
 
 """
 obtenemos la informacion de la alerta que deseamos obtner
