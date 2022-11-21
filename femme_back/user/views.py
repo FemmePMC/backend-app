@@ -80,6 +80,7 @@ Actualizamos el contenido de una persona
 @api_view(['PUT'])
 def updateUser(request, pk):
     data = request.data
+    print(data)
     user = User.objects.get(id=pk)
 
     serializer = UserSerializer(user, data)
@@ -95,3 +96,16 @@ def deleteUser(request, pk):
     user = User.objects.get(id=pk)
     user.delete()
     return Response('Se elimino el usuario!')
+
+"""
+Patch es para actualizar solo un campo
+"""
+@api_view(['PATCH'])
+def patchUser(request, pk):
+    data = request.data
+    user = User.objects.get(id=pk)
+    serializer = UserSerializer(user, data, partial=True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors)

@@ -8,5 +8,5 @@ urlpatterns = [
     path('user/<str:pk>/update', views.updateUser),
     path('user/<str:pk>/delete', views.deleteUser),
     path('user/<str:pk>/', views.getUser),
-    
+    path('user/<str:pk>/patch', views.patchUser),
 ]

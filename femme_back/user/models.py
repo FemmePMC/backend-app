@@ -11,7 +11,7 @@ class User(models.Model):
     password = models.CharField(max_length=20)
     name = models.CharField(max_length=50)
     birth_date = models.DateField()
-    photo = models.ImageField(upload_to='user_photos', blank=True)
+    photo = models.CharField(max_length=120)
     height = models.FloatField()
 
     email = models.CharField(max_length=50)
