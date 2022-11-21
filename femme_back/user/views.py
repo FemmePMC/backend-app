@@ -109,3 +109,14 @@ def patchUser(request, pk):
         serializer.save()
         return Response(serializer.data)
     return Response(serializer.errors)
+
+
+"""
+Obtener todos los usuarios relacionados a un usuario
+"""
+@api_view(['GET'])
+def getRelatedUsers(request, pk):
+    user = User.objects.get(id=pk)
+    related_users = user.emergency_contacts.all()
+    serializer = UserSerializer(related_users, many=True)
+    return Response(serializer.data)
