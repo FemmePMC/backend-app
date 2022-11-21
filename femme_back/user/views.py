@@ -1,3 +1,4 @@
+from femme_back.alert.models import Alert
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import UserSerializer
@@ -131,3 +132,13 @@ def relateUser(request, pk, pk2):
     user.emergency_contacts.add(user2)
     return Response('Se relacionaron los usuarios')
 
+
+"""
+Relacionar una alerta a un usuario
+"""
+@api_view(['POST'])
+def relateAlert(request, pk, pkAlert):
+    user = User.objects.get(id=pk)
+    alert = Alert.objects.get(id=pkAlert)
+    user.alerts_received.add(alert)
+    return Response('Se agrego la alerta correctamente')
