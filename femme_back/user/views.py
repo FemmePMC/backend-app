@@ -120,3 +120,14 @@ def getRelatedUsers(request, pk):
     related_users = user.emergency_contacts.all()
     serializer = UserSerializer(related_users, many=True)
     return Response(serializer.data)
+
+"""
+Relacionar un usuario con otro
+"""
+@api_view(['POST'])
+def relateUser(request, pk, pk2):
+    user = User.objects.get(id=pk)
+    user2 = User.objects.get(id=pk2)
+    user.emergency_contacts.add(user2)
+    return Response('Se relacionaron los usuarios')
+
