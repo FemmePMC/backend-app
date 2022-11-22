@@ -152,4 +152,17 @@ def getRelatedAlerts(request, pk):
     user = User.objects.get(id=pk)
     related_alerts = user.alerts_received.all()
     serializer = AlertSerializer(related_alerts, many=True)
-    return Response(len(serializer.data))
+    return Response(serializer.data)
+
+"""
+Cambiar la latidud y longitud de una ubicación relacionada a un usuario
+"""
+@api_view(['PATCH'])
+def patchRelatedLocation(request, pk):
+    user = User.objects.get(id=pk)
+    location = user.location
+    data = request.data
+    location.latitude = data['latitude']
+    location.longitude = data['longitude']
+    location.save()
+    return Response('Se actualizo la alerta correctamente')
