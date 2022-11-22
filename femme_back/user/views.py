@@ -152,4 +152,4 @@ def getRelatedAlerts(request, pk):
     user = User.objects.get(id=pk)
     related_alerts = user.alerts_received.all()
     serializer = AlertSerializer(related_alerts, many=True)
-    return Response(serializer.data)
+    return Response(serializer.data[0])
