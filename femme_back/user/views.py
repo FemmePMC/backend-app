@@ -1,5 +1,7 @@
 from alert.models import Alert
 from alert.serializers import AlertSerializer
+from location.models import Location
+from location.serializers import LocationSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import UserSerializer
@@ -166,3 +168,13 @@ def patchRelatedLocation(request, pk):
     location.longitude = data['longitude']
     location.save()
     return Response('Se actualizo la alerta correctamente')
+
+"""
+Obtener la ubicación relacionada a un usuario
+"""
+@api_view(['GET'])
+def getRelatedLocation(request, pk):
+    user = User.objects.get(id=pk)
+    location = user.location
+    serializer = LocationSerializer(location, many=False)
+    return Response(serializer.data)
