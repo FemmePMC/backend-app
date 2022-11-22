@@ -142,3 +142,13 @@ def relateAlert(request, pk, pkAlert):
     alert = Alert.objects.get(id=pkAlert)
     user.alerts_received.add(alert)
     return Response('Se agrego la alerta correctamente')
+
+"""
+Obtener todas las alertas relacionadas a un usuario
+"""
+@api_view(['GET'])
+def getRelatedAlerts(request, pk):
+    user = User.objects.get(id=pk)
+    related_alerts = user.alerts_received.all()
+    serializer = UserSerializer(related_alerts, many=True)
+    return Response(serializer.data)
