@@ -160,12 +160,20 @@ def getRelatedAlerts(request, pk):
 Cambiar la latidud y longitud de una ubicación relacionada a un usuario
 """
 @api_view(['PATCH'])
-def patchRelatedLocation(request, pk):
+def patchRelatedLongitudeLocation(request, pk):
+    user = User.objects.get(id=pk)
+    location = user.location
+    data = request.data
+    location.longitude = data['longitude']
+    location.save()
+    return Response('Se actualizo la ubicación correctamente')
+
+@api_view(['PATCH'])
+def patchRelatedLatitudeLocation(request, pk):
     user = User.objects.get(id=pk)
     location = user.location
     data = request.data
     location.latitude = data['latitude']
-    location.longitude = data['longitude']
     location.save()
     return Response('Se actualizo la ubicación correctamente')
 
