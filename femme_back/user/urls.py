@@ -12,5 +12,5 @@ urlpatterns = [
     path('user/<str:pk>/emergency_contacts/', views.getRelatedUsers),
     path('user/<str:pk>/add/<str:pk2>/', views.relateUser),
     path('user/<str:pk>/alert/<str:pkAlert>/', views.relateAlert),
-    path('user/<str:pk>/alerts/', views.getAlerts),
+    path('user/<str:pk>/alerts/', views.getRelatedAlerts),
 ]
