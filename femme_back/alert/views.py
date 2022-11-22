@@ -10,6 +10,7 @@ def getRoute(request):
             'Endpoint': '',
             'method': '',
             'message': None,
+            'user': None,
             'description': ''
         }
     ]
@@ -32,7 +33,8 @@ Agregamos una alerta a la base de datos
 def createAlert(request):
     data = request.data
     alert = Alert.objects.create(
-        message = data['message']
+        message = data['message'],
+        user = data['user'],
     )
     serializer = AlertSerializer(alert, many=False)
     return Response(serializer.data)
