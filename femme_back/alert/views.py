@@ -34,7 +34,7 @@ def createAlert(request):
     data = request.data
     alert = Alert.objects.create(
         message = data['message'],
-        user = data['user_id'],
+        user_id = data['user_id'],
     )
     serializer = AlertSerializer(alert, many=False)
     return Response(serializer.data)
