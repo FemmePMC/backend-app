@@ -1,4 +1,5 @@
 from alert.models import Alert
+from alert.serializers import AlertSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import UserSerializer
@@ -150,5 +151,5 @@ Obtener todas las alertas relacionadas a un usuario
 def getRelatedAlerts(request, pk):
     user = User.objects.get(id=pk)
     related_alerts = user.alerts_received.all()
-    serializer = UserSerializer(related_alerts, many=True)
+    serializer = AlertSerializer(related_alerts, many=True)
     return Response(serializer.data)
