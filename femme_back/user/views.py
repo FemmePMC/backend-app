@@ -167,7 +167,7 @@ def patchRelatedLocation(request, pk):
     location.latitude = data['latitude']
     location.longitude = data['longitude']
     location.save()
-    return Response('Se actualizo la alerta correctamente')
+    return Response('Se actualizo la ubicación correctamente')
 
 """
 Obtener la ubicación relacionada a un usuario
