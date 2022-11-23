@@ -154,7 +154,13 @@ def getRelatedAlerts(request, pk):
     user = User.objects.get(id=pk)
     related_alerts = user.alerts_received.all()
     serializer = AlertSerializer(related_alerts, many=True)
-    return Response(serializer.data)
+    serializer_copy = serializer.data
+    for i in range (len(serializer_copy)):
+        user = User.objects.get(id=serializer_copy[i]['user'])
+        serializer_copy[i]['user'] = UserSerializer(user, many=False).data
+        location = str(user.location.latitude) + ',' + str(user.location.longitude)
+        serializer_copy[i]['location'] = location
+    return Response(serializer_copy)
 
 """
 Cambiar la latidud y longitud de una ubicación relacionada a un usuario
