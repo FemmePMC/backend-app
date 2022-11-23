@@ -158,8 +158,8 @@ def getRelatedAlerts(request, pk):
     for i in range (len(serializer_copy)):
         user = User.objects.get(id=serializer_copy[i]['user'])
         serializer_copy[i]['user'] = UserSerializer(user, many=False).data
-        location = str(user.location.latitude) + ',' + str(user.location.longitude)
-        serializer_copy[i]['location'] = location
+        serializer_copy[i]['latitude'] = user.location.latitude
+        serializer_copy[i]['longitude'] = user.location.longitude
     return Response(serializer_copy)
 
 """
