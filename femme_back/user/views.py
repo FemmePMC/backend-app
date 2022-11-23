@@ -123,7 +123,13 @@ def getRelatedUsers(request, pk):
     user = User.objects.get(id=pk)
     related_users = user.emergency_contacts.all()
     serializer = UserSerializer(related_users, many=True)
-    return Response(serializer.data)
+    serializer_copy = serializer.data
+    for i in range(len(serializer_copy)):
+        user = User.objects.get(id=serializer_copy[i]['id'])
+        location = user.location
+        serializer_copy[i]['latitude'] = location.latitude
+        serializer_copy[i]['longitude'] = location.longitude
+    return Response(serializer_copy)
 
 """
 Relacionar un usuario con otro
